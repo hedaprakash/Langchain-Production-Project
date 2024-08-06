@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+redis
+requests
+openai
+langchain
+python-dotenv
+psycopg2-binary
+pgvector
+langchain-community
+langchain-openai
+tiktoken
+langchain-postgres
