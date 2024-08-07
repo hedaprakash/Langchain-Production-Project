@@ -63,7 +63,7 @@ docker images --format "{{.Repository}}:{{.Tag}}"
 # docker pull postgres:16
 # docker pull dpage/pgadmin4
 # docker pull redis
-# docker pull python:3.12-slim-buster
+# docker pull python:3.12-slim
 # docker pull python:3.11-slim-buster
 # docker pull python:3.10-slim-buster
 # docker pull python:3.9-slim-buster
