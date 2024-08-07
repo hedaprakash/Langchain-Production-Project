@@ -44,7 +44,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: template-pgadmin
+    container_name: cpgadmin
     depends_on:
       - postgres
     ports:

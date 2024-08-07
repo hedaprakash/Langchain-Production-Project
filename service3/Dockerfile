@@ -16,6 +16,7 @@ WORKDIR /app
 
 # Copy installed packages from the build stage
 COPY --from=build /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=build /usr/local/bin /usr/local/bin
 
 # Now copy the rest of the application code
 COPY . /app
