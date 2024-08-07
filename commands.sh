@@ -63,15 +63,18 @@ docker images --format "{{.Repository}}:{{.Tag}}"
 # docker pull postgres:16
 # docker pull dpage/pgadmin4
 # docker pull redis
+# docker pull python:3.12-slim-buster
+# docker pull python:3.11-slim-buster
 # docker pull python:3.10-slim-buster
 # docker pull python:3.9-slim-buster
+# docker pull  node:22-alpine
 
 docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
 docker rm -f $(docker ps -aq)
 docker compose build
 docker images --format "{{.Repository}}:{{.Tag}}"
-
 docker compose up
+docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
 
 
 docker compose build postgres
@@ -81,6 +84,7 @@ docker compose build langservice2dependencies
 docker compose build service2
 docker compose build langservice3dependencies
 docker compose build service3
+docker compose build frontend
 docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
 
 docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
@@ -91,6 +95,7 @@ docker compose up redis -d
 docker compose up service2 -d
 docker compose up service3 -d
 docker compose up pgadmin -d
+docker compose up frontend -d
 
 docker compose build service2
 docker compose up service2 -d
