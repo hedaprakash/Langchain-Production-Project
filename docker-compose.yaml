@@ -9,6 +9,7 @@ services:
 
   postgres:
     build: ./postgres
+    image: langpostgres:latest
     container_name: cpostgres
     ports:
       - "5433:5432"
@@ -19,16 +20,33 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: vectordb
 
+  langservice2dependencies:
+    build:
+      context: .
+      dockerfile: ./service2/Dockerfile.dependencies
+    image: langservice2dependencies:latest
+    container_name: langservice2dependencies
+
   service2:
     build: ./service2
+    image: langservice2:latest
     container_name: cservice2
     ports:
       - "5000:80"
     depends_on:
       - postgres
+      - langservice2dependencies
+
+  langservice3dependencies:
+    build:
+      context: .
+      dockerfile: ./service3/Dockerfile.dependencies
+    image: langservice3dependencies:latest
+    container_name: langservice3dependencies
 
   service3:
     build: ./service3
+    image: langservice3:latest
     container_name: cservice3
     ports:
       - "8000:80"
@@ -36,8 +54,11 @@ services:
       - .env
     depends_on:
       - postgres
+      - langservice3dependencies
+
   frontend:
     build: ./frontend
+    image: langfrontend:latest
     container_name: cfrontend
     ports:
       - "3000:3000"

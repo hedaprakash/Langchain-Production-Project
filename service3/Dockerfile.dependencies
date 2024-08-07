@@ -1,0 +1,17 @@
+# Dockerfile.dependencies
+FROM python:3.9-slim-buster 
+
+WORKDIR /app
+
+# Copy only the requirements file first
+COPY ./service3/requirements.txt ./
+
+# Install dependencies
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
+
+# Install PostgreSQL client
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get upgrade -y

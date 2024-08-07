@@ -1,0 +1,12 @@
+# Dockerfile.dependencies
+FROM python:3.10-slim-buster
+
+WORKDIR /app
+
+# Copy only the requirements file first
+COPY ./service2/requirements.txt ./
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
+RUN apt-get update && apt-get upgrade -y
