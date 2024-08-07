@@ -51,17 +51,14 @@ docker images --format "{{.Repository}}:{{.Tag}}"
 docker images --format "{{.Repository}}:{{.Tag}}" | grep -v -E '^(redis:latest|postgres:16|dpage/pgadmin4:latest|python:3.10-slim-buster|python:3.9-slim-buster)$'
 docker rmi -f $(docker images --format "{{.Repository}}:{{.Tag}}" | grep -v -E '^(redis:latest|postgres:16|dpage/pgadmin4:latest|python:3.10-slim-buster|python:3.9-slim-buster)$')
 
-docker rmi langchain-production-project-service2:latest
-docker rmi langchain-production-project-postgres:latest
-docker rmi langchain-production-project-service3:latest
-docker rmi langchain-production-project-frontend:latest
 
 
-docker rmi $(docker images | grep '^postgres *15' | awk '{print $3}')
+# docker rmi $(docker images | grep '^postgres *15' | awk '{print $3}')
 
 
-docker ps -a
-docker images
+docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+docker images --format "{{.Repository}}:{{.Tag}}"
+
 
 # docker pull postgres:16
 # docker pull dpage/pgadmin4
@@ -69,7 +66,13 @@ docker images
 # docker pull python:3.10-slim-buster
 # docker pull python:3.9-slim-buster
 
+docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
 docker rm -f $(docker ps -aq)
+docker compose build
+docker images --format "{{.Repository}}:{{.Tag}}"
+
+docker compose up
+
 
 docker compose build postgres
 docker compose build pgadmin
