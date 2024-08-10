@@ -50,6 +50,7 @@ docker rmi -f $(docker images -q -f "dangling=true")
 docker images --format "{{.Repository}}:{{.Tag}}"
 docker images --format "{{.Repository}}:{{.Tag}}" | grep -v -E '^(redis:latest|postgres:16|dpage/pgadmin4:latest|python:3.12-slim|node:22-alpine|frdel/agent-zero-exe:latest)$'
 docker rmi -f $(docker images --format "{{.Repository}}:{{.Tag}}" | grep -v -E '^(redis:latest|postgres:16|dpage/pgadmin4:latest|python:3.12-slim|node:22-alpine|frdel/agent-zero-exe:latest)$')
+docker compose up --build
 
 
 

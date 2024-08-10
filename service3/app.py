@@ -15,7 +15,6 @@ from langchain.schema import (
     HumanMessage,
     SystemMessage
 )
-
 from langchain.prompts import (
     PromptTemplate,
     SystemMessagePromptTemplate,

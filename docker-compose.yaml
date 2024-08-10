@@ -68,7 +68,11 @@ services:
     image: langfrontend:latest
     container_name: cfrontend
     ports:
-      - "3000:3000"
+      - "15000:3000"
+    depends_on:
+      - postgres
+      - langservice3dependencies
+      - service2
 
   pgadmin:
     image: dpage/pgadmin4

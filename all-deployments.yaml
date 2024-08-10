@@ -166,7 +166,7 @@ spec:
         - name: frontend
           image: myfrontend:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 15000
 ---
 apiVersion: v1
 kind: Service
@@ -176,5 +176,5 @@ spec:
   selector:
     app: frontend
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 15000
+      targetPort: 15000
